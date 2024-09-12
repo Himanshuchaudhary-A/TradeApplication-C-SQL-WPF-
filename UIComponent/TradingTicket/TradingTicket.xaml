@@ -1,0 +1,66 @@
+﻿<Window x:Class="NirvanaTradingApp.TradingTicket"
+             FocusManager.FocusedElement="{Binding ElementName=SymbolTextBox}"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NirvanaTradingApp"
+             mc:Ignorable="d" Height="115" Title="Trading Ticket" ResizeMode="NoResize" Width="656">
+    <Grid Height="104" Width="656" Background="WhiteSmoke">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="24" />
+            <!-- Column for the vertical line -->
+            <ColumnDefinition Width="Auto" MinWidth="149" />
+            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="172*" />
+            <ColumnDefinition Width="108*" />
+            <ColumnDefinition Width="108*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Labels -->
+        <Label Content="Symbol" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="Arial" Height="24" Width="50"/>
+
+        <!-- Vertical line -->
+        <Rectangle Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" Fill="Black" Margin="11,0,11,-35" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <Label Content="Side" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontFamily="Arial" Height="24" Width="34"/>
+        <Label Content="Account" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0,0,0" FontFamily="Arial" Height="24" Width="58" Grid.ColumnSpan="2"/>
+        <Label Content="Quantity" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="171,0,0,0" FontFamily="Arial" Height="24" Width="54" Grid.ColumnSpan="2" RenderTransformOrigin="0.641,0.752"/>
+        <Label Content="Price" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" FontFamily="Arial" Height="24" Width="37"/>
+
+        <!-- Input Fields -->
+        <TextBox Name="SymbolTextBox" Height="20" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontFamily="Arial"/>
+        <ComboBox Name="SideComboBox" Text="Select Side" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="5,0,15,0" FontFamily="Arial" Height="20" Background="White" AutomationProperties.IsColumnHeader="True">
+            <ComboBoxItem Content="Buy"/>
+            <ComboBoxItem Content="Sell"/>
+        </ComboBox>
+        <ComboBox Name="AccountComboBox" Text="Select Account" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Margin="10,0,20,0" FontFamily="Arial" Height="20" Background="White" Foreground="Black">
+            <ComboBoxItem Content="Account 1"/>
+            <ComboBoxItem Content="Account 2"/>
+            <ComboBoxItem Content="Unallocated"/>
+        </ComboBox>
+        <TextBox Name="QuantityTextBox" Text="0" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" FontFamily="Arial" Height="20" Margin="171,0,20,0" PreviewTextInput="Qauntity_Textbox_PreviewTextInput" Grid.ColumnSpan="2"/>
+        <TextBox Name="PriceTextBox" Text="0.00" Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Margin="10,0,21,0" FontFamily="Arial" Height="20" PreviewTextInput="Qauntity_Textbox_PreviewTextInput"/>
+
+        <!-- Buttons -->
+        <Button Content="Create Order" Name="CreateOrderButton" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" FontFamily="Arial" Width="89" Margin="170,10,0,11" Grid.ColumnSpan="2" Click="CreateOrderButton_Click"/>
+        <Button Content="Done Away" Name="DoneAwayButton" Grid.Row="2" Grid.Column="7" HorizontalAlignment="Left" Margin="10,10,0,12" FontFamily="Arial" Width="77" Click="DoneAway_Click"/>
+        <Button Content="Save Button" Name="SaveButton" Visibility="Hidden" Grid.Row="2" Grid.Column="7" HorizontalAlignment="Left" Margin="10,10,0,12" FontFamily="Arial" Width="77" Click="SaveButton_Click"/>
+    </Grid>
+</Window>

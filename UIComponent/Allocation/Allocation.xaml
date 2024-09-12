@@ -1,0 +1,48 @@
+﻿<Window x:Class="NirvanaTradingApp.Allocation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:NirvanaTradingApp"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800"
+        Title="Allocation" ResizeMode="CanResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+         <!-- Unallocated Orders -->
+       
+        <GroupBox Header="Unallocated" Grid.Row="0" Grid.Column="0">
+            <DataGrid Name="UnallocatedOrdersDataGrid" Loaded="UnallocatedOrdersDataGrid_Loaded" IsReadOnly="True" AutoGenerateColumns="True" SelectionChanged="UnallocatedOrdersDataGrid_SelectionChanged">
+            </DataGrid>
+        </GroupBox>
+
+        <!-- Allocated Orders -->
+        <GroupBox Header="Allocated" Grid.Row="1" Grid.Column="0">
+            <DataGrid Name="AllocatedOrdersDataGrid" Loaded="AllocatedOrdersDataGrid_Loaded" IsReadOnly="True" SelectionChanged="AllocatedOrdersDataGrid_SelectionChanged">
+            </DataGrid>
+        </GroupBox>
+
+        <!-- Vertical Resizer -->
+        <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="Gray"/>
+
+        <!-- Right-side Panel with ComboBox and Button -->
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+            <ComboBox Name="OptionsComboBox" Width="120" Margin="0,0,5,0" Text="Select Accounts">
+            </ComboBox>
+            <Button Name="AllocateButton" Content="Allocate" Width="100" Click="AllocateButton_Click"/>
+        </StackPanel>
+
+    </Grid>
+
+</Window>
